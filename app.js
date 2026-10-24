@@ -24,7 +24,7 @@ const projects={
       "PWM"
     ],
     "summary": "普通相机负责看动作，热成像再帮忙确认：这是人吗？两路视觉和双轴云台一起配合，让设备持续跟着人看，也尝试看懂举手、持械等状态，再用灯光提醒。",
-    "intro": "让云台“看见人”只是第一步：人一动、被挡一下、画面一转，它还认不认得？这个项目基于 MaixCAM2，把 RGB 人体与姿态识别、热成像复核、多目标跟踪和双轴控制接成一条链，探索一套能看、会跟、也能发出灯光提醒的双光原型。",
+    "intro": "这是我在哈尔滨工业大学（深圳）RA 工作期间开展的项目。让云台“看见人”只是第一步：人一动、被挡一下、画面一转，它还认不认得？这个项目基于 MaixCAM2，把 RGB 人体与姿态识别、热成像复核、多目标跟踪和双轴控制接成一条链，探索一套能看、会跟、也能发出灯光提醒的双光原型。",
     "goal": "让视觉、热像和转动中的云台尽量对上节拍：持续跟踪人员，判断举手与持械状态，同时减少短时漏检、偶发误报和跟随摆动带来的干扰。",
     "content": [
       "把 Python 原型迁往嵌入式 Linux 上的原生 C++ 多线程架构，让视觉推理、热复核、云台控制、显示与录像各自分工。",
@@ -36,7 +36,39 @@ const projects={
       "本地 V2 记录涉及观测估计与拒绝保护、单人和双人测试、遮挡恢复、告警逻辑以及退出行为复核，持续沿着“记录现象—分析时序—修改—再测”的流程推进。"
     ],
     "takeaway": "两双眼睛并不等于自动看得更准：画面和热像要对齐，识别和控制要衔接，目标换了还得清楚状态该留还是该重置。最有意思的地方，就在这些“单看都能跑，接起来还要再磨磨”的小缝隙里。",
-    "status": "双光原型已进入 V2 持续迭代。页面按提供的阶段总结及本地开发、测试记录整理。V2 采用了更新后的控制与估计结构，本地记录尚不能证明 100 Hz 独立线程、分段循环录像等旧版功能已全部等价迁移；当前远端源码未复核，因此不将这些方案写成 V2 最新版本的完整验收结论。"
+    "status": "双光原型已进入 V2 持续迭代。页面按提供的阶段总结及本地开发、测试记录整理。V2 采用了更新后的控制与估计结构，本地记录尚不能证明 100 Hz 独立线程、分段循环录像等旧版功能已全部等价迁移；当前远端源码未复核，因此不将这些方案写成 V2 最新版本的完整验收结论。",
+    "affiliation": "哈尔滨工业大学（深圳） · RA 项目"
+  },
+  "jetson": {
+    "key": "jetson",
+    "category": "software",
+    "tone": "jetson",
+    "label": "EDGE AI / SMALL MODELS, BIG QUESTIONS",
+    "headline": "让小盒子，也想想大问题",
+    "title": "Jetson Orin 端侧大模型量化与任务规划能力测试",
+    "time": "探索中",
+    "meta": "端侧大模型 · 能力测试",
+    "affiliation": "哈尔滨工业大学（深圳） · RA 项目",
+    "hint": "先装得下，再看看想得怎样",
+    "tags": [
+      "Jetson Orin",
+      "端侧 LLM",
+      "模型量化",
+      "推理加速",
+      "模型部署",
+      "标准化评测"
+    ],
+    "summary": "把小参数大模型搬到 Jetson Orin 上，看看算力有限的小盒子能不能做好任务规划。围绕量化、推理加速、部署和统一测试，摸一摸“装得下”和“用得好”之间的距离。",
+    "intro": "这是我在哈尔滨工业大学（深圳）RA 工作期间开展的一项端侧模型探索。在算力有限的终端上，小参数大模型经过量化之后，还能不能把任务想清楚、规划明白？我在 Jetson Orin 上做模型部署与能力测试，把这个问题放到实际设备里看看。",
+    "goal": "在终端算力受限的条件下，探索小参数大模型量化后在任务规划中的能力，并把部署、加速和能力测试整理成便于比较的流程。",
+    "content": [
+      "开展小参数大模型的量化工作，探索在有限终端资源上运行模型的方案。",
+      "围绕端侧推理做加速与运行调试，并在 Jetson Orin 上完成模型部署。",
+      "针对任务规划开展能力测试，关注模型在实际任务中的理解与规划表现。",
+      "整理标准化能力测试流程，统一任务、运行条件与结果记录，便于比较不同部署与量化方案。"
+    ],
+    "takeaway": "把模型放进设备里，是一关；让它在同样的任务里交出有用的答案，又是另一关。小盒子里的探索，既要看资源怎么花，也要看任务到底做得怎么样。",
+    "status": "已开展模型量化、推理加速、端侧部署和标准化能力测试，持续探索小参数大模型在任务规划中的表现。具体模型、量化配置、加速倍率和评测分数按后续实验记录补充。"
   },
   "aod": {
     "key": "aod",
@@ -137,7 +169,7 @@ const projects={
       "Windows"
     ],
     "summary": "一边调油门、一边盯仪表、还要记数据？把这些步骤串起来：PX4 管控制，相机帮忙读表，上位机负责安排流程，最后把曲线和记录交出来。",
-    "intro": "电机和桨叶的测试会产生不少重复动作：设档位、等稳定、读仪表、记结果，再来一轮。这个上位机把流程集中到一个工作台里，也把原始照片、数据和失败记录留了下来。",
+    "intro": "这是我在哈尔滨工业大学（深圳）RA 工作期间开展的项目。电机和桨叶的测试会产生不少重复动作：设档位、等稳定、读仪表、记结果，再来一轮。这个上位机把流程集中到一个工作台里，也把原始照片、数据和失败记录留了下来。",
     "goal": "让测试更有条理，减少反复手抄，也方便回头查看每个点是怎么测出来的。",
     "content": [
       "连接 PX4 执行器控制与 USB 摄像头读表，支持测试方案编辑和逐档执行。",
@@ -146,7 +178,8 @@ const projects={
       "整理 Windows x64 免安装文件夹运行包，以及操作、部署和开发交接资料。"
     ],
     "takeaway": "“跑完一轮”只是开始，能重放、能追查、换台电脑还能用，才更像一个顺手的工具。",
-    "status": "运行包已完成实际解压后的离线自检，交付记录包含 93 项离线回归。更换电脑后的设备连接、标定和实机运行仍需现场验收。图中的曲线是界面示意。"
+    "status": "运行包已完成实际解压后的离线自检，交付记录包含 93 项离线回归。更换电脑后的设备连接、标定和实机运行仍需现场验收。图中的曲线是界面示意。",
+    "affiliation": "哈尔滨工业大学（深圳） · RA 项目"
   },
   "rm68": {
     "key": "rm68",
@@ -165,7 +198,7 @@ const projects={
       "嵌入式"
     ],
     "summary": "从原有 SDK 出发，给 RM68 换上 ImmortalWrt。启动、网口、双频无线，再到一个轻量管理页——每多亮起一项功能，都有点通关的快乐。",
-    "intro": "一块硬件换系统，往往不是“编译完就好了”。启动链路、驱动、内存和网络配置都得配合起来。这个项目沿着“先起来、再连通、最后用顺手”的路线慢慢推进。",
+    "intro": "这是我在哈尔滨工业大学（深圳）RA 工作期间开展的项目。一块硬件换系统，往往不是“编译完就好了”。启动链路、驱动、内存和网络配置都得配合起来。这个项目沿着“先起来、再连通、最后用顺手”的路线慢慢推进。",
     "goal": "让 RM68 在新的系统里完成基本网络工作，并能通过清楚的界面查看和调整配置。",
     "content": [
       "推进单机启动与持久安装，验证配置重启保留、有线转发和双频 AP。",
@@ -174,7 +207,8 @@ const projects={
       "加入未确认修改自动恢复，给调整网络配置留一条回来的路。"
     ],
     "takeaway": "能显示“运行中”和真的完成通信，是两件需要分别验证的事。底层移植的乐趣，就是把这些看似相邻的小关卡逐个打通。",
-    "status": "已有单机启动、双频 AP 传输与管理页访问记录。双节点与多跳 mesh、长期负载、户外性能及部分射频校准仍需后续验证。"
+    "status": "已有单机启动、双频 AP 传输与管理页访问记录。双节点与多跳 mesh、长期负载、户外性能及部分射频校准仍需后续验证。",
+    "affiliation": "哈尔滨工业大学（深圳） · RA 项目"
   },
   "voice": {
     "key": "voice",
@@ -277,6 +311,7 @@ document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListen
  document.querySelectorAll('.project').forEach(p=>p.hidden=button.dataset.filter!=='all'&&p.dataset.category!==button.dataset.filter);
 }));
 document.querySelector('.experience-stamp a').addEventListener('click',()=>document.querySelector('[data-filter="robotics"]').click());
+document.querySelectorAll('[data-ra-project]').forEach(link=>link.addEventListener('click',()=>document.querySelector('[data-filter="all"]').click()));
 let toastTimeout;
 function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),3200)}
 document.querySelector('#share-link').addEventListener('click',async()=>{const url=location.origin+location.pathname;try{await navigator.clipboard.writeText(url);toast('链接已复制！把这份折腾传出去 ↗')}catch{const text=document.createElement('textarea');text.value=url;text.style.cssText='position:fixed;left:-9999px';document.body.append(text);text.select();try{if(!document.execCommand('copy'))throw Error();toast('链接已复制！把这份折腾传出去 ↗')}catch{toast('请复制浏览器地址栏中的主页链接。')}text.remove()}});

@@ -2,16 +2,19 @@
 
 **在线访问：[https://easonyin7.github.io/](https://easonyin7.github.io/)**
 
-尹顺 / easonyin 的个人项目集。包含9个带简单图示、可点击展开的项目，以及教育、实习、技能与邮箱联系入口。
+尹顺 / easonyin 的个人项目集。包含10个带简单图示、可点击展开的项目，以及教育、实习、技能与邮箱联系入口。
+
+当前工作：哈尔滨工业大学（深圳）科研助理（RA），2026.07 — 至今。
 
 ## 项目
 
-- 基于 MaixCAM2 的 RGB–热成像融合智能跟踪云台
+- 基于 MaixCAM2 的 RGB–热成像融合智能跟踪云台（HITSZ · RA）
+- Jetson Orin 端侧大模型量化与任务规划能力测试（HITSZ · RA）
 - 光学成像：从 FPGA 扫描到 AOD 多焦点
 - 配餐柜机械臂实时保护
 - VLA 微调与遥操作数据采集
-- 电机桨叶自动测试台
-- HLK-RM68 · ImmortalWrt 移植
+- 电机桨叶自动测试台（HITSZ · RA）
+- HLK-RM68 · ImmortalWrt 移植（HITSZ · RA）
 - 语音测控与智能助手
 - 智能鸡舍健康监测系统
 - 2026 腾讯广告算法竞赛
