@@ -729,16 +729,16 @@ const UI={
     "en": "Hi, I’m"
   },
   "s11": {
-    "zh": "尹顺 · easonyin",
-    "en": "Shun Yin · easonyin"
+    "zh": "easonyin",
+    "en": "Eason"
   },
   "s12": {
-    "zh": "电子信息硕士在读，目前在哈工大（深圳）做 RA。",
-    "en": "Master’s student in Electronic Information and RA at HIT Shenzhen."
+    "zh": "华南师大电子信息硕士在读，目前在哈工大（深圳）做 RA。",
+    "en": "Master’s student in Electronic Information at SCNU, currently an RA at HIT Shenzhen."
   },
   "s13": {
-    "zh": "继续和机器人、开发板，还有端侧小模型打交道。",
-    "en": "Working with robots, embedded boards, and small models at the edge."
+    "zh": "主要在和机器人、开发板，还有端侧小模型打交道。",
+    "en": "Mostly working with robots, embedded boards, and small models at the edge."
   },
   "s14": {
     "zh": "看看我在折腾啥",
@@ -749,12 +749,12 @@ const UI={
     "en": "A little about me"
   },
   "s16": {
-    "zh": "机器人与具身智能",
-    "en": "Robotics & embodied AI"
+    "zh": "机器人",
+    "en": "Robotics"
   },
   "s17": {
-    "zh": "光学成像",
-    "en": "Optical imaging"
+    "zh": "具身智能",
+    "en": "Embodied AI"
   },
   "s18": {
     "zh": "嵌入式开发",
@@ -778,7 +778,7 @@ const UI={
   },
   "s23": {
     "zh": "把想法，放进真实世界。",
-    "en": "Taking ideas into the real world."
+    "en": "Ideas in the real world."
   },
   "s24": {
     "zh": "哈尔滨工业大学（深圳）",
@@ -789,8 +789,8 @@ const UI={
     "en": "Research Assistant (RA)"
   },
   "s26": {
-    "zh": "从双光跟踪云台、自动化测试和网络移植，到端侧小模型，继续让想法在真实设备上跑起来。",
-    "en": "From dual-vision tracking and automated tests to networking and edge models: turning ideas into things that run on real devices."
+    "zh": "在哈工大（深圳）做 RA，围绕视觉跟踪、自动化测试、嵌入式系统和端侧模型，让软硬件一起跑起来。",
+    "en": "As an RA at HIT Shenzhen, I work on visual tracking, automated testing, embedded systems, and edge models—getting software and hardware to work together."
   },
   "s27": {
     "zh": "双光跟踪云台 ↗",
@@ -842,19 +842,19 @@ const UI={
   },
   "s39": {
     "zh": "我的",
-    "en": "Things I "
+    "en": "My "
   },
   "s40": {
     "zh": "折腾清单",
-    "en": "tinker with"
+    "en": "project notebook"
   },
   "s41": {
-    "zh": "光、机器人、开发板，还有鸡舍。",
-    "en": "Light, robots, embedded boards—and a chicken coop."
+    "zh": "从机器人控制，到端侧模型部署。",
+    "en": "From robot control to models running on devices."
   },
   "s42": {
-    "zh": "点开一张卡片，看看我是怎么和它们打交道的。",
-    "en": "Open a card for the story behind the project."
+    "zh": "点开一张卡片，看看做了什么、怎么做，以及现在走到哪一步。",
+    "en": "Open a card to see what I built, how it works, and where it stands."
   },
   "a43": {
     "zh": "筛选项目",
@@ -885,12 +885,12 @@ const UI={
     "en": "Illustrations show the idea. Open a card for the process and progress; diagrams and sketch curves are not raw experimental data."
   },
   "s50": {
-    "zh": "尹顺",
-    "en": "Shun Yin"
+    "zh": "Eason",
+    "en": "Eason"
   },
   "s51": {
-    "zh": "机器人 · 光学成像 · 嵌入式系统",
-    "en": "Robotics · Optical imaging · Embedded systems"
+    "zh": "机器人 · 具身智能 · 嵌入式开发 · 模型推理部署",
+    "en": "Robotics · Embodied AI · Embedded development · Model inference & deployment"
   },
   "s52": {
     "zh": "教育背景",
@@ -917,8 +917,8 @@ const UI={
     "en": "Bachelor’s in Automation"
   },
   "s58": {
-    "zh": "代码要会跑，",
-    "en": "Code should run."
+    "zh": "关于 Eason",
+    "en": "About Eason"
   },
   "s59": {
     "zh": "硬件也得",
@@ -929,96 +929,96 @@ const UI={
     "en": "listen, too."
   },
   "s61": {
-    "zh": "你好呀，我是尹顺，也可以叫我 easonyin。本科在武汉轻工大学读自动化，现在是华南师范大学电子信息专业的硕士生。对我来说，好玩的事常常从一句“这能不能做出来？”开始。",
-    "en": "Hi, I’m Shun Yin, also known as easonyin. I studied Automation at Wuhan Polytechnic University and am now pursuing a master’s in Electronic Information at South China Normal University. For me, interesting things often begin with “could we build this?”"
+    "zh": "你好，我是 easonyin，也可以叫我 Eason。本科读自动化，现在是华南师大电子信息专业的硕士生。喜欢把一个“能不能做”的想法，变成设备上真正跑起来的东西。",
+    "en": "Hi, I’m easonyin—Eason works too. I studied Automation and am now pursuing a master’s in Electronic Information at SCNU. I like turning “could we build this?” into something that actually runs on a device."
   },
   "s62": {
-    "zh": "2026 年 7 月起，我在哈尔滨工业大学（深圳）做科研助理（RA），开展双光跟踪云台、电机桨叶自动测试台、RM68 移植，以及 Jetson Orin 端侧大模型测试。此前也在美团参与过机械臂保护与 VLA 验证：换的是问题，不变的是想动手试试。",
-    "en": "Since July 2026, I have worked as a Research Assistant at HIT Shenzhen on dual-vision tracking, motor testing, the RM68 port, and Jetson Orin model evaluation. Before that, I worked on robot-arm protection and VLA validation at Meituan. The problems change; the urge to try building something stays."
+    "zh": "2026 年 7 月起，我在哈工大（深圳）做科研助理（RA），参与双光跟踪云台、电机桨叶测试台、RM68 移植和 Jetson Orin 端侧模型测试。此前在美团做算法实习，参与机械臂保护、遥操作数据采集与 VLA 验证。",
+    "en": "Since July 2026, I’ve been an RA at HIT Shenzhen, working on dual-vision tracking, motor testing, the RM68 port, and Jetson Orin model evaluation. Previously, I interned at Meituan on robot-arm protection, teleoperation data collection, and VLA validation."
   },
   "s63": {
-    "zh": "我喜欢把代码接上硬件，看看屏幕里的想法在现实里会发生什么。遇到问题就拆小一点，跑通了就记录下来——能复现的进步，总比“好像可以了”更让人开心。",
-    "en": "I like connecting code to hardware and seeing what happens when an on-screen idea meets the real world. Break a problem down, get one piece working, and write it down: reproducible progress feels better than “it seems to work.”"
+    "zh": "现在更关注机器人与具身智能、嵌入式开发，以及模型量化、推理和部署。喜欢拆问题、做小验证，再把它们接成完整系统；跑通之后，也记得把结果记下来。",
+    "en": "My current focus is robotics and embodied AI, embedded development, and model quantization, inference, and deployment. I break problems into small experiments, connect the pieces into a system, and keep a record of what works."
   },
   "s64": {
-    "zh": "硬件与系统",
-    "en": "Hardware & systems"
+    "zh": "嵌入式系统",
+    "en": "Embedded systems"
   },
   "s65": {
     "zh": "软件与工具",
     "en": "Software & tools"
   },
   "s66": {
-    "zh": "算法与部署",
-    "en": "Algorithms & deployment"
+    "zh": "推理与部署",
+    "en": "Inference & deployment"
   },
   "s67": {
-    "zh": "控制与信号",
-    "en": "Control & signals"
+    "zh": "控制与感知",
+    "en": "Control & perception"
   },
   "s68": {
-    "zh": "PID · IIR / FFT · 高速采集 · 电路调试 · 系统联调",
-    "en": "PID · IIR / FFT · High-speed acquisition · Circuit debugging · System integration"
+    "zh": "视觉跟踪 · 姿态估计 · PID · IMU 融合 · 系统联调",
+    "en": "Visual tracking · Pose estimation · PID · IMU fusion · System integration"
   },
   "s69": {
     "zh": "连接与通信",
     "en": "Connectivity"
   },
   "s70": {
-    "zh": "语言与协作",
-    "en": "Language & collaboration"
+    "zh": "机器人与具身智能",
+    "en": "Robotics & embodied AI"
   },
   "s71": {
-    "zh": "CET-6 · 英文技术文献阅读 · AI 辅助开发",
-    "en": "CET-6 · English technical reading · AI-assisted development"
+    "zh": "VLA · 遥操作采集 · ByteTrack · 任务规划能力测试",
+    "en": "VLA · Teleoperation data · ByteTrack · Task-planning evaluation"
   },
   "s72": {
-    "zh": "我的折腾三步曲。",
-    "en": "My three-step tinkering loop."
+    "zh": "动手做事的三个步骤",
+    "en": "How I work"
   },
   "s73": {
     "zh": "先问个为什么",
     "en": "Start with a why"
   },
   "s74": {
-    "zh": "先搞清楚“为什么要做”，再决定从哪儿下手。翻资料、画草图，都算开工。",
-    "en": "Understand why it matters, then find a place to start. Reading and sketching both count as getting to work."
+    "zh": "先理清要解决的问题，再翻资料、画草图，找到一个可以动手的入口。",
+    "en": "Get clear on the problem, read, sketch, and find a practical starting point."
   },
   "s75": {
     "zh": "动手试一小步",
     "en": "Build one small step"
   },
   "s76": {
-    "zh": "先让最小的一段跑起来。亮个灯、出条波形、读到一个数，都值得高兴一下。",
-    "en": "Get the smallest piece working. A blinking light, a waveform, or one readable number is worth a little celebration."
+    "zh": "先把最小的一段跑通：读到数据、完成一次推理，或者让设备按预期动一下。",
+    "en": "Get one small piece working: read some data, run inference, or make a device move as intended."
   },
   "s77": {
     "zh": "再看看，真行吗",
     "en": "Then ask: does it hold up?"
   },
   "s78": {
-    "zh": "跑通之后多问一句：换个条件还行吗？把结果记下来，也给下一次折腾留条路。",
-    "en": "Once it works, try another condition. Record the result and leave a trail for the next round."
+    "zh": "换些条件再试一遍，记下结果和边界，让下一次迭代有迹可循。",
+    "en": "Try different conditions and record the results and limits, so the next iteration has something to build on."
   },
   "s79": {
-    "zh": "有个好玩的想法？",
-    "en": "Got an interesting idea?"
+    "zh": "保持联系",
+    "en": "Get in touch"
   },
   "s80": {
     "zh": "来，聊两句",
     "en": "Let’s talk"
   },
   "s81": {
-    "zh": "机器人、光学、开发板，或者一个“这能做吗”的脑洞，都欢迎。",
-    "en": "Robots, optics, embedded boards, or a “could we build this?” idea—feel free to say hello."
+    "zh": "机器人、具身智能、开发板、模型部署，或者只是聊聊最近在折腾什么，都欢迎。",
+    "en": "Robotics, embodied AI, embedded boards, model deployment—or just what you’ve been tinkering with lately. Say hello."
   },
   "s82": {
     "zh": "打个招呼",
     "en": "Say hello"
   },
   "s83": {
-    "zh": "复制主页链接 ↗",
-    "en": "Copy site link ↗"
+    "zh": "复制主页链接",
+    "en": "Copy site link"
   },
   "s84": {
     "zh": "© 2026 easonyin · 个人项目集",
@@ -1037,8 +1037,8 @@ const UI={
     "en": "What is the goal?"
   },
   "s88": {
-    "zh": "动手做了这些",
-    "en": "What went into it"
+    "zh": "开发要点",
+    "en": "Development notes"
   },
   "s89": {
     "zh": "折腾下来的一点感受",
@@ -1053,15 +1053,19 @@ const UI={
     "en": "Experience and figures follow my CV and project records · October 2026"
   },
   "s92": {
-    "zh": "故事先讲到这，看看别的 ↗",
-    "en": "That’s the story. Explore another ↗"
+    "zh": "继续看看其他项目 ↗",
+    "en": "Explore another project ↗"
+  },
+  "s93": {
+    "zh": "模型推理部署",
+    "en": "Model inference & deployment"
   }
 };
 let language='zh';
 let activeProject=null;
 const copyText={
- zh:{open:'展开看看',openPrefix:'展开：',homeTitle:'easonyin — 保持好奇，快乐折腾。',description:'尹顺 easonyin，华南师范大学电子信息硕士在读，现于哈尔滨工业大学（深圳）担任科研助理（RA）。机器人、光学成像、嵌入式与端侧大模型项目集。',copied:'链接已复制！把这份折腾传出去 ↗',copyFallback:'请复制浏览器地址栏中的主页链接。',hitsz:'HITSZ · RA 项目',meituan:'美团 · 实习项目'},
- en:{open:'Explore the story',openPrefix:'Open: ',homeTitle:'easonyin — Stay curious. Keep tinkering.',description:'Shun Yin (easonyin), Research Assistant at HIT Shenzhen and master’s student at South China Normal University. Projects in robotics, optical imaging, embedded systems, and edge language models.',copied:'Link copied. Pass the tinkering along ↗',copyFallback:'Please copy the site URL from your browser’s address bar.',hitsz:'HITSZ · RA project',meituan:'Meituan · Internship project'}
+ zh:{open:'展开看看',openPrefix:'展开：',homeTitle:'easonyin — 保持好奇，快乐折腾。',description:'easonyin，华南师大电子信息硕士在读，目前在哈工大（深圳）做 RA。关注机器人、具身智能、嵌入式开发与模型推理部署。',copied:'链接已复制！把这份折腾传出去 ↗',copyFallback:'请复制浏览器地址栏中的主页链接。',hitsz:'HITSZ · RA 项目',meituan:'美团 · 实习项目'},
+ en:{open:'Explore the story',openPrefix:'Open: ',homeTitle:'easonyin — Stay curious. Keep tinkering.',description:'Eason (easonyin), master’s student in Electronic Information at SCNU and RA at HIT Shenzhen. Robotics, embodied AI, embedded development, and model inference and deployment.',copied:'Link copied. Pass the tinkering along ↗',copyFallback:'Please copy the site URL from your browser’s address bar.',hitsz:'HITSZ · RA project',meituan:'Meituan · Internship project'}
 };
 function projectInLanguage(key){return language==='en'?{...projects[key],...projects[key].en}:projects[key]}
 function tagElements(tags){return tags.map(text=>{const el=document.createElement('span');el.textContent=text;return el})}

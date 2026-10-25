@@ -2,7 +2,7 @@
 
 **在线访问：[https://easonyin7.github.io/](https://easonyin7.github.io/)**
 
-尹顺 / easonyin 的个人项目集。包含10个带简单图示、可点击展开的项目，以及教育、实习、技能与邮箱联系入口。
+easonyin / Eason 的个人项目集。包含10个带简单图示、可点击展开的项目，以及教育、实习、技能与邮箱联系入口。
 
 当前工作：哈尔滨工业大学（深圳）科研助理（RA），2026.07 — 至今。
 
@@ -27,7 +27,7 @@
 
 - `index.html`：页面与项目图示。
 - `app.js`：项目详情、分类筛选与交互。
-- `style.css`、`resume.css`、`playful.css`、`bilingual.css`：响应式与双语样式。
+- `style.css`：统一的响应式与双语样式。其余 CSS 文件保留为兼容占位。
 - `.nojekyll`：直接发布静态文件。
 
 项目图示为概念示意，经历与成果按个人简历和项目记录整理。
