@@ -27,13 +27,11 @@ const projects={
     "intro": "这是我在哈尔滨工业大学（深圳）RA 工作期间开展的项目。让云台“看见人”只是第一步：人一动、被挡一下、画面一转，它还认不认得？这个项目基于 MaixCAM2，把 RGB 人体与姿态识别、热成像复核、多目标跟踪和双轴控制接成一条链，探索一套能看、会跟、也能发出灯光提醒的双光原型。",
     "goal": "让视觉、热像和转动中的云台尽量对上节拍：持续跟踪人员，判断举手与持械状态，同时减少短时漏检、偶发误报和跟随摆动带来的干扰。",
     "content": [
-      "把 Python 原型迁往嵌入式 Linux 上的原生 C++ 多线程架构，让视觉推理、热复核、云台控制、显示与录像各自分工。",
-      "用 YOLO11-Pose 做人体检测与 17 点姿态估计，结合 ByteTrack 跟踪多个人；加入逻辑 ID 关联，让短时漏检、遮挡或轨迹换号时的状态尽量接得上。",
-      "接入 YOLOv8 枪械与刀具检测，将检测框与腕部关键点关联，再用时序积分和状态保持抑制偶发误报；结合持械优先选择、举手状态判断与灯光告警组织流程。",
-      "读取 Thermal256 原始温度，结合框内外温差、绝对温度和温度纹理做人体热特征复核；原型中探索 RGB 历史框插值、三档时延假设与 IMU 运动补偿，缓解双光异步和转动造成的错位。",
-      "早期原型方案包含 100 Hz 独立双轴控制循环，结合视觉角度误差、IMU 角速度阻尼、S 曲线、中心死区、切换制动与重新获取保护。100 Hz 指控制循环，不是视觉推理帧率；V2 的控制结构与迁移范围另行迭代。",
-      "开发相机内参与双光时延标定工具，配合设备日志、录像和实测分析定位问题；早期方案包含 H.264 分段循环录像，不能据此认定 V2 已具备相同录像策略。",
-      "本地 V2 记录涉及观测估计与拒绝保护、单人和双人测试、遮挡恢复、告警逻辑以及退出行为复核，持续沿着“记录现象—分析时序—修改—再测”的流程推进。"
+      "将 Python 原型迁往嵌入式 Linux 上的 C++ 多线程架构，解耦视觉推理、热复核、控制、显示和录像。",
+      "集成 YOLO11-Pose 与 ByteTrack，加入逻辑 ID 关联，衔接短时漏检、遮挡与轨迹换号时的目标状态。",
+      "以腕部关键点、时序积分和状态保持关联持械检测，组织目标优先级、举手判断与灯光告警。",
+      "接入 Thermal256 原始温度；早期原型探索历史框插值、时延假设和 IMU 补偿，处理双光异步与云台运动。",
+      "结合视觉误差与 IMU 阻尼开展双轴控制，开发标定、日志和录像分析工具。早期原型记录的 100 Hz 指控制循环频率。"
     ],
     "takeaway": "两双眼睛并不等于自动看得更准：画面和热像要对齐，识别和控制要衔接，目标换了还得清楚状态该留还是该重置。最有意思的地方，就在这些“单看都能跑，接起来还要再磨磨”的小缝隙里。",
     "status": "双光原型已进入 V2 持续迭代。页面按提供的阶段总结及本地开发、测试记录整理。V2 采用了更新后的控制与估计结构，本地记录尚不能证明 100 Hz 独立线程、分段循环录像等旧版功能已全部等价迁移；当前远端源码未复核，因此不将这些方案写成 V2 最新版本的完整验收结论。",
@@ -63,13 +61,11 @@ const projects={
       "intro": "Developed during my research assistant work at Harbin Institute of Technology, Shenzhen. Detecting a person is just the first step: can the system keep track when they move, disappear briefly, or the camera turns? This MaixCAM2 prototype connects pose estimation, thermal checks, multi-object tracking, and two-axis control.",
       "goal": "Keep vision, thermal frames, and a moving gimbal in sync, while reducing the effects of missed detections, occasional false positives, and tracking oscillation.",
       "content": [
-        "Migrated the Python prototype toward a native, multithreaded C++ architecture on embedded Linux, separating inference, thermal checks, control, display, and recording.",
-        "Combined YOLO11-Pose person detection and 17-keypoint pose estimation with ByteTrack. Added logical ID association to carry state through brief misses, occlusion, and track ID changes.",
-        "Integrated YOLOv8 firearm and knife detection, wrist-keypoint association, temporal evidence accumulation, and state retention. Connected weapon-priority selection, raised-hand states, and light alerts.",
-        "Read raw Thermal256 temperatures and evaluated inside/outside box contrast, absolute temperature, and thermal texture. The prototype explored historical RGB-box interpolation, three delay hypotheses, and IMU compensation for asynchronous sensors and camera motion.",
-        "The earlier prototype included a 100 Hz independent two-axis control loop with visual angular error, IMU damping, S-curve motion planning, a central dead zone, switching braking, and reacquisition protection. This is a control rate, not an inference frame rate; V2 uses an evolving control structure.",
-        "Built camera-intrinsic and dual-sensor timing calibration tools and used logs, recordings, and test analysis to investigate problems. H.264 segmented loop recording belonged to the earlier design and is not assumed to be fully migrated into V2.",
-        "Local V2 records cover observation estimation and rejection protection, single- and two-person tests, occlusion recovery, alerts, and exit behavior, following a record–analyze–change–retest cycle."
+        "Migrated the Python prototype toward threaded C++ on embedded Linux, separating inference, thermal checks, control, display, and recording.",
+        "Integrated YOLO11-Pose and ByteTrack with logical ID association to retain target state across missed detections, occlusion, and track-ID changes.",
+        "Associated object detections with wrist keypoints, temporal integration, and state holding for target priority, raised-hand states, and light alerts.",
+        "Read Thermal256 raw temperatures; the earlier prototype explored historical-box interpolation, delay hypotheses, and IMU compensation for asynchronous sensors and gimbal motion.",
+        "Worked on two-axis control with visual error/IMU damping, calibration, logging, and recording analysis. The earlier prototype’s 100 Hz figure describes the control loop."
       ],
       "takeaway": "Two sensors do not automatically mean better vision. Their frames need to line up, detection needs to meet control, and state needs to survive—or reset correctly—when a target changes. The interesting work lives in those gaps.",
       "status": "The prototype is being iterated in V2. This account combines the supplied stage summary with local development and test records. Those records do not establish full migration of every earlier feature, including the 100 Hz independent loop and segmented recording. The latest remote source has not been reviewed.",
@@ -80,7 +76,13 @@ const projects={
         "RGB + Thermal",
         "ByteTrack",
         "IMU"
-      ]
+      ],
+      "outcome": "Dual-vision sensing, tracking, and two-axis control",
+      "outcomeNote": "Prototype → V2; system validation is ongoing",
+      "contribution": "Worked on dual-vision and gimbal development and integration, including C++ threading, target association, thermal checks, control, and test tools.",
+      "completed": "Built an RGB–thermal tracking prototype integrating person detection, pose estimation, target association, and gimbal control; V2 development is underway.",
+      "validated": "Stage tests cover one/two-person scenarios, occlusion recovery, and alert logic. The earlier design included a 100 Hz control loop; those features are not all established as validated V2 behavior.",
+      "next": "Complete version-specific V2 tracking success, recovery time, control-error measurements, and demos."
     },
     "cardTags": [
       "MaixCAM2",
@@ -88,7 +90,15 @@ const projects={
       "RGB + Thermal",
       "ByteTrack",
       "IMU"
-    ]
+    ],
+    "featured": true,
+    "outcome": "双光感知、目标跟踪与双轴控制原型",
+    "outcomeNote": "原型 → V2，持续开展系统验证",
+    "contribution": "参与双光视觉与云台系统开发和联调，覆盖 C++ 多线程迁移、目标关联、热像复核、控制与测试工具。",
+    "completed": "构建 RGB–热成像跟踪原型，集成人体检测、姿态估计、目标关联和云台控制，并进入 V2 迭代。",
+    "validated": "已有单人、双人、遮挡恢复与告警逻辑的阶段测试记录；旧版包含 100 Hz 独立控制循环等方案，不能直接视为 V2 的全部验收结果。",
+    "next": "补齐 V2 版本对应的跟踪成功率、恢复时间、控制误差与演示记录。",
+    "resources": []
   },
   "motor": {
     "key": "motor",
@@ -110,10 +120,10 @@ const projects={
     "intro": "这是我在哈尔滨工业大学（深圳）RA 工作期间开展的项目。电机和桨叶的测试会产生不少重复动作：设档位、等稳定、读仪表、记结果，再来一轮。这个上位机把流程集中到一个工作台里，也把原始照片、数据和失败记录留了下来。",
     "goal": "让测试更有条理，减少反复手抄，也方便回头查看每个点是怎么测出来的。",
     "content": [
-      "连接 PX4 执行器控制与 USB 摄像头读表，支持测试方案编辑和逐档执行。",
-      "提供历史回放、曲线查看、失败档续测，以及测试结果和曲线导出。",
-      "保存仪表照片、原始数据与运行记录，方便定位读数和流程问题。",
-      "整理 Windows x64 免安装文件夹运行包，以及操作、部署和开发交接资料。"
+      "联通 PX4/MAVLink 输出控制、USB 摄像头仪表识别和桌面任务编排。",
+      "实现逐档采集、有效样本统计、曲线与 CSV/报告导出，以及失败档续测。",
+      "当前源码支持 10 档主测与自动补 8 点，补点依据本轮有效结果插值生成；新流程已完成离线编排验证。",
+      "保存原始记录与照片，提供历史回放、Windows 文件夹运行包和部署/验收文档。"
     ],
     "takeaway": "“跑完一轮”只是开始，能重放、能追查、换台电脑还能用，才更像一个顺手的工具。",
     "status": "运行包已完成实际解压后的离线自检，交付记录包含 93 项离线回归。更换电脑后的设备连接、标定和实机运行仍需现场验收。图中的曲线是界面示意。",
@@ -135,10 +145,10 @@ const projects={
       "intro": "Developed during my research assistant work at Harbin Institute of Technology, Shenzhen. Motor and propeller testing involves plenty of repeated steps: set a level, wait, read, record, and repeat. The application organizes that workflow and keeps the original images, data, and failure records.",
       "goal": "Make tests easier to organize, reduce manual transcription, and preserve enough context to trace how each measurement was produced.",
       "content": [
-        "Connected PX4 actuator control with USB-camera instrument reading, editable test plans, and step-by-step execution.",
-        "Added historical replay, curve viewing, resume-from-failure workflows, and result and chart export.",
-        "Saved instrument images, raw data, and run records to help investigate reading and workflow issues.",
-        "Prepared a portable Windows x64 folder package with operation, deployment, and developer handover notes."
+        "Integrated PX4/MAVLink output control, USB-camera instrument reading, and desktop task orchestration.",
+        "Implemented stepped acquisition, valid-sample statistics, curves, CSV/report exports, and resuming failed steps.",
+        "Current source supports 10 main steps and 8 supplemental points interpolated from the current run; offline orchestration validation is complete.",
+        "Preserved raw records/photos and provided historical replay, a Windows folder distribution, and deployment/acceptance documentation."
       ],
       "takeaway": "Finishing a run is a start. Being able to replay it, investigate it, and use the tool on another computer makes it much more useful.",
       "status": "The extracted runtime package passed its offline self-check; delivery records include 93 offline regression checks. Device connections, calibration, and live tests on another computer still need on-site verification. The illustration is a UI sketch, not measured data.",
@@ -148,13 +158,43 @@ const projects={
         "PX4",
         "Computer vision",
         "Windows"
-      ]
+      ],
+      "outcome": "104 offline checks; code and hardware-result summaries public",
+      "outcomeNote": "Source validation dated 25 Oct 2026; new 18-point flow awaits hardware acceptance",
+      "contribution": "Worked on desktop workflow orchestration, PX4/control-camera integration, replay, resuming tests, exports, and Windows delivery workflows.",
+      "completed": "Implemented stepped acquisition, historical replay, resumable runs, curve/report exports; current source includes 10 main steps and 8 automatically generated supplemental points.",
+      "validated": "Public summaries cover 9 main and 8 supplemental hardware points from 19 Oct. The 25 Oct record reports 104 offline checks; 93 checks for the packaged release refer to an earlier delivery version.",
+      "next": "Validate the new 18-point workflow, 100% command, and new PC/bench combinations on hardware; add a demo, reading-error measurements, and efficiency comparisons."
     },
     "cardTags": [
       "Python",
       "PX4",
       "计算机视觉",
       "Windows"
+    ],
+    "featured": true,
+    "outcome": "104 项离线检查，实测汇总与代码公开",
+    "outcomeNote": "2026-10-25 源码验证记录；新 18 点流程待实机验收",
+    "contribution": "参与上位机流程编排、PX4 控制与相机读表联调，整理回放、续测、导出和 Windows 交付流程。",
+    "completed": "完成逐档采集、历史回放、失败续测、曲线与报告导出；当前源码加入 10 档主测与自动补 8 点编排。",
+    "validated": "公开了 10 月 19 日的 9 档主测与 8 档补点实测汇总。10 月 25 日记录包含 104 项离线检查；旧运行包的 93 项回归属于较早交付版本。",
+    "next": "新 18 点流程、100% 档位与新电脑/新台架仍需现场验收；补充运行视频、读数误差及效率对比。",
+    "resources": [
+      {
+        "zh": "GitHub 仓库",
+        "en": "GitHub repository",
+        "url": "https://github.com/easonyin7/motor-propeller-test-bench"
+      },
+      {
+        "zh": "实测汇总",
+        "en": "Hardware-result summaries",
+        "url": "https://github.com/easonyin7/motor-propeller-test-bench/blob/main/examples/results/README.md"
+      },
+      {
+        "zh": "104 项离线检查记录",
+        "en": "104-check offline validation",
+        "url": "https://github.com/easonyin7/motor-propeller-test-bench/blob/main/bench_app/%E9%AA%8C%E8%AF%81%E8%AE%B0%E5%BD%95_2026-10-25.md"
+      }
     ]
   },
   "rm68": {
@@ -215,13 +255,43 @@ const projects={
         "Linux",
         "802.11s",
         "Embedded"
-      ]
+      ],
+      "outcome": "Single-node NAND boot, dual-band AP, persistent settings",
+      "outcomeNote": "Hardware evidence available; multi-node mesh remains unverified",
+      "contribution": "Worked on RM68 adaptation, staged bring-up, persistent installation, a lightweight HTTPS management UI, and documented build/validation workflows.",
+      "completed": "Prepared device-tree adaptation, wireless bring-up, persistent-image build/recovery workflows, and management UI with unconfirmed-change rollback.",
+      "validated": "One device passed default NAND boot, setting persistence, basic wired transfer, and simultaneous dual-band AP transfer; local mesh group startup/AP coexistence is recorded.",
+      "next": "Test peer authentication, mesh paths, multi-hop, throughput, and sustained load. Public path/config-generation changes have not undergone a fresh firmware/hardware acceptance run."
     },
     "cardTags": [
       "ImmortalWrt",
       "Linux",
       "802.11s",
       "嵌入式"
+    ],
+    "featured": true,
+    "outcome": "单机 NAND 启动、双频 AP 与配置持久化",
+    "outcomeNote": "有硬件验证记录；多节点 mesh 尚未验证",
+    "contribution": "参与 RM68 设备适配、分阶段启动验证、持久安装和轻量 HTTPS 管理页开发，整理构建脚本与验证边界。",
+    "completed": "整理设备树适配、无线启动、持久镜像构建和恢复流程，提供管理页与未确认配置自动恢复。",
+    "validated": "一台设备完成 NAND 默认启动、重启配置保留、有线基本传输与双频 AP 同时传输；本地 mesh 组启动与 AP 共存已有记录。",
+    "next": "验证第二节点认证、mesh 路径、多跳、吞吐和长期负载；公开版路径与配置生成改动尚未重新刷机验收。",
+    "resources": [
+      {
+        "zh": "GitHub 仓库",
+        "en": "GitHub repository",
+        "url": "https://github.com/easonyin7/hlk-rm68-immortalwrt"
+      },
+      {
+        "zh": "硬件验证记录",
+        "en": "Hardware validation record",
+        "url": "https://github.com/easonyin7/hlk-rm68-immortalwrt/blob/main/evidence/hardware-validation.json"
+      },
+      {
+        "zh": "移植与构建流程",
+        "en": "Porting/build workflow",
+        "url": "https://github.com/easonyin7/hlk-rm68-immortalwrt/blob/main/docs/porting.md"
+      }
     ]
   },
   "jetson": {
@@ -288,7 +358,13 @@ const projects={
         "Inference acceleration",
         "Model deployment",
         "Standardized evaluation"
-      ]
+      ],
+      "outcome": "Edge quantization, inference deployment, task-planning tests",
+      "outcomeNote": "Exploration; performance comparisons are not yet public",
+      "contribution": "Worked on small-model quantization, inference/deployment debugging on Jetson Orin, and consistent task/result-recording workflows.",
+      "completed": "Worked on quantization, inference acceleration, device deployment, and task-planning evaluation.",
+      "validated": "The page describes the work scope; reproducible model configurations, runtime metrics, and task scores are not yet published.",
+      "next": "Document model size, quantization precision, runtime, memory, latency, and task success in comparable conditions."
     },
     "cardTags": [
       "Jetson Orin",
@@ -297,7 +373,15 @@ const projects={
       "推理加速",
       "模型部署",
       "标准化评测"
-    ]
+    ],
+    "featured": false,
+    "outcome": "端侧量化、推理部署与任务规划评测",
+    "outcomeNote": "探索项目，性能对比数据尚未公开",
+    "contribution": "开展 Jetson Orin 上的小参数模型量化、推理运行与部署调试，整理统一任务和结果记录流程。",
+    "completed": "开展模型量化、推理加速、设备部署与任务规划测试。",
+    "validated": "当前展示工作范围，尚未公布可复核的模型配置、运行指标或任务分数。",
+    "next": "整理模型参数量、量化精度、运行框架、内存、延迟和任务成功率，形成同条件对照表。",
+    "resources": []
   },
   "safety": {
     "key": "safety",
@@ -351,14 +435,28 @@ const projects={
         "Isolation Forest",
         "Anomaly detection",
         "Real-time control"
-      ]
+      ],
+      "outcome": "Recall ≥99%; DVT false-positive rate ≤2%",
+      "outcomeNote": "Project test figures from my CV; not a general performance guarantee",
+      "contribution": "Worked on torque anomaly detection, dynamic thresholds, filtering/decision logic, hardware tuning, and DVT checks on the meal-cabinet robot.",
+      "completed": "Integrated Isolation Forest, dynamic thresholds, filtering, and sliding windows into the real-time protection workflow.",
+      "validated": "Project records report recall ≥99% and DVT false positives ≤2%. The protection trigger threshold changed from 450 N to 50 N; this is not a measured reduction in peak collision force.",
+      "next": "Add shareable test conditions, anomaly sample counts, false-positive definitions, and result plots."
     },
     "affiliation": "美团 · 实习项目",
     "cardTags": [
       "Isolation Forest",
       "异常检测",
       "实时控制"
-    ]
+    ],
+    "featured": true,
+    "outcome": "召回率 ≥99%，DVT 误报率 ≤2%",
+    "outcomeNote": "简历记录的项目测试口径，非通用性能保证",
+    "contribution": "参与力矩异常检测、动态阈值与滤波决策链路开发，进行配餐柜实机调参和 DVT 验证。",
+    "completed": "将 Isolation Forest、动态阈值、滤波和滑动窗口接入实时保护链路。",
+    "validated": "按项目测试口径，召回率 ≥99%，DVT 误报率 ≤2%；保护触发阈值由 450 N 调整至 50 N，该数值不等同于实际碰撞峰值力的降幅。",
+    "next": "补充可公开的测试条件、异常样本规模、误报统计口径和结果图。",
+    "resources": []
   },
   "vla": {
     "key": "vla",
@@ -417,7 +515,13 @@ const projects={
         "SpaceMouse",
         "RealSense",
         "Policy distillation"
-      ]
+      ],
+      "outcome": "Teleoperation/VLA validation; ICRA 2026 second author",
+      "outcomeNote": "Publication/authorship follows my CV; paper link to be added",
+      "contribution": "Contributed to arm SDK/SpaceMouse integration, RealSense capture, data-quality screening, and VLA fine-tuning/policy-distillation workflow validation.",
+      "completed": "Built action/vision capture workflows and smoothness, occlusion, and pose-consistency checks; participated in VLA fine-tuning and real-world policy distillation.",
+      "validated": "My CV records an ICRA 2026 publication with second authorship. This page focuses on my work on capture platforms, screening tools, and experiment workflows.",
+      "next": "Add the paper title/link, task setup, and a clear account of individual contributions within the team result."
     },
     "affiliation": "美团 · 实习项目",
     "cardTags": [
@@ -425,7 +529,15 @@ const projects={
       "SpaceMouse",
       "RealSense",
       "策略蒸馏"
-    ]
+    ],
+    "featured": true,
+    "outcome": "遥操作采集与 VLA 验证；ICRA 2026 第二作者",
+    "outcomeNote": "论文成果按个人简历记录，论文入口待补充",
+    "contribution": "参与机械臂 SDK 与 SpaceMouse 遥操作集成、RealSense 数据采集、样本质量筛选，以及 VLA 微调和策略蒸馏流程验证。",
+    "completed": "搭建动作与视觉采集链路，制定平滑度、遮挡与位姿一致性检查，参与 VLA 微调与真实世界策略蒸馏。",
+    "validated": "个人简历记录相关成果发表于 ICRA 2026，本人为第二作者。当前页面聚焦采集平台、筛选工具与实验流程参与内容。",
+    "next": "补齐论文标题、公开链接、任务设置，以及个人贡献与团队成果的对应说明。",
+    "resources": []
   },
   "aod": {
     "key": "aod",
@@ -483,14 +595,28 @@ const projects={
         "FPGA / MEMS",
         "AD9910",
         "FFT"
-      ]
+      ],
+      "outcome": "101 target frequencies detected; electrical chain established",
+      "outcomeNote": "Frequency/electrical-stage result; imaging performance remains under validation",
+      "contribution": "Worked on FPGA/MEMS scanning and AOD multi-tone experiments, integrating signal generation, acquisition, and analysis.",
+      "completed": "Integrated multi-tone generation, control interfaces, and the basic acquisition/analysis chain.",
+      "validated": "The basic electrical chain detects 101 target frequencies; this does not establish spatial resolution or in-vivo imaging performance.",
+      "next": "Validate trigger alignment, anti-aliasing, amplitude calibration, and spatial mapping; prepare representative spectra."
     },
     "cardTags": [
       "AOD",
       "FPGA / MEMS",
       "AD9910",
       "FFT"
-    ]
+    ],
+    "featured": false,
+    "outcome": "101 个目标频点检出，电学链路打通",
+    "outcomeNote": "频域与电学阶段结果；成像性能仍在验证",
+    "contribution": "开展 FPGA/MEMS 扫描与 AOD 多频编码相关实验，联调信号源、采集及分析链路。",
+    "completed": "完成多音输出、控制接口与采集分析链路的基本联调。",
+    "validated": "基本电学链路已打通，101 个目标频点检出；这一结果不代表空间分辨率或活体成像性能已验证。",
+    "next": "继续验证触发对应、抗混叠、幅度标定与空间映射，整理代表性频谱。",
+    "resources": []
   },
   "voice": {
     "key": "voice",
@@ -548,14 +674,28 @@ const projects={
         "C++ / Qt",
         "Raspberry Pi",
         "Voice interaction"
-      ]
+      ],
+      "outcome": "91% target-command recognition; closed-loop device control",
+      "outcomeNote": "Applies to the project command set and noise-test conditions",
+      "contribution": "Trained speech models and implemented C++ decoding with Raspberry Pi peripheral control; later added a Qt UI and natural-language dialogue.",
+      "completed": "Connected speech input, real-time decoding, temperature feedback, and device actions; later expanded to natural-language/multi-turn interaction.",
+      "validated": "Project records report 91% command recognition across tested noise conditions and over 20,000 cumulative views of technical posts/videos.",
+      "next": "Add command-set size, noise conditions, response latency, and a public demo link."
     },
     "cardTags": [
       "Kaldi",
       "C++ / Qt",
       "树莓派",
       "语音交互"
-    ]
+    ],
+    "featured": false,
+    "outcome": "目标命令识别率 91%，完成设备闭环控制",
+    "outcomeNote": "对应当时的命令集与噪声测试条件",
+    "contribution": "训练语音模型并实现 C++ 解码，接入树莓派外设控制；后续迭代 Qt 界面与自然语言对话。",
+    "completed": "打通语音输入、实时解码、温度闭环和设备执行，后续扩展自然语言与多轮对话。",
+    "validated": "项目命令在多噪声条件下综合识别率记录为 91%，技术分享累计阅读记录为 2 万余次。",
+    "next": "补充命令集规模、噪声条件、响应延迟和可公开演示链接。",
+    "resources": []
   },
   "poultry": {
     "key": "poultry",
@@ -613,14 +753,28 @@ const projects={
         "RK3588",
         "ESP32",
         "MQTT"
-      ]
+      ],
+      "outcome": "About 8,000 images; reported project accuracy 85%",
+      "outcomeNote": "Experimental figures for the 2023 competition project",
+      "contribution": "Worked on image collection/labeling, YOLOv5 training, RK3588 inference deployment, and MQTT/cloud-dashboard integration.",
+      "completed": "Integrated image capture, edge recognition, MQTT upload, and a cloud dashboard.",
+      "validated": "My CV records around 8,000 images, 85% project accuracy, and a bronze award in the 2023 China Collegiate Computing Contest final.",
+      "next": "Add class definitions, data split, metric definitions, and award/demo materials."
     },
     "cardTags": [
       "YOLOv5",
       "RK3588",
       "ESP32",
       "MQTT"
-    ]
+    ],
+    "featured": false,
+    "outcome": "约 8,000 张图像，项目准确率 85%",
+    "outcomeNote": "2023 年竞赛项目实验口径",
+    "contribution": "参与图像采集标注、YOLOv5 训练、RK3588 推理部署和 MQTT/云端看板联调。",
+    "completed": "将图像采集、边缘识别、MQTT 上传与云端看板接成完整链路。",
+    "validated": "简历记录约 8,000 张图像、85% 项目准确率，并获 2023 年中国高校计算机大赛决赛铜奖。",
+    "next": "补充分类定义、数据划分、指标计算口径和获奖/演示材料。",
+    "resources": []
   },
   "algo": {
     "key": "algo",
@@ -673,13 +827,27 @@ const projects={
         "Algorithm competition",
         "Teamwork",
         "Experiments"
-      ]
+      ],
+      "outcome": "Algorithm-competition exploration notes",
+      "outcomeNote": "No model scores or rankings available for display",
+      "contribution": "Set up a shared workspace with Nat for problem analysis and initial experiment preparation.",
+      "completed": "Created the project and a data/testing workspace.",
+      "validated": "The current entry records the exploration direction; no verifiable model metrics or competition ranking are available.",
+      "next": "Expand the entry once task definitions, a baseline, comparisons, and stage results are available."
     },
     "cardTags": [
       "算法竞赛",
       "团队协作",
       "实验探索"
-    ]
+    ],
+    "featured": false,
+    "outcome": "算法竞赛探索记录",
+    "outcomeNote": "尚无可展示的模型成绩或排名",
+    "contribution": "与 Nat 建立协作工作空间，开展竞赛问题分析与初步实验准备。",
+    "completed": "建立项目与数据/测试工作空间。",
+    "validated": "当前展示探索方向，尚无可公开核验的模型指标或竞赛排名。",
+    "next": "形成任务定义、基线、实验对比和阶段结果后，再扩展项目展示。",
+    "resources": []
   }
 };
 const dialog=document.querySelector('#project-dialog');
@@ -853,15 +1021,15 @@ const UI={
     "en": "From robot control to models running on devices."
   },
   "s42": {
-    "zh": "点开一张卡片，看看做了什么、怎么做，以及现在走到哪一步。",
-    "en": "Open a card to see what I built, how it works, and where it stands."
+    "zh": "先看五个重点项目，也可以切换到全部项目。展开查看我的参与、成果与验证记录。",
+    "en": "Start with five selected projects, or browse all entries. Open a card for my contribution, outcomes, and validation records."
   },
   "a43": {
     "zh": "筛选项目",
     "en": "Filter projects"
   },
   "s44": {
-    "zh": "全部折腾",
+    "zh": "全部项目",
     "en": "All projects"
   },
   "s45": {
@@ -1049,8 +1217,8 @@ const UI={
     "en": "Where it stands"
   },
   "s91": {
-    "zh": "经历与指标根据个人简历和项目记录整理 · 2026 年 10 月",
-    "en": "Experience and figures follow my CV and project records · October 2026"
+    "zh": "项目与公开记录整理于 2026 年 10 月；实验指标以对应测试条件为准。",
+    "en": "Compiled from project and public records in October 2026; experimental figures apply to the stated test conditions."
   },
   "s92": {
     "zh": "继续看看其他项目 ↗",
@@ -1070,6 +1238,7 @@ const copyText={
 function projectInLanguage(key){return language==='en'?{...projects[key],...projects[key].en}:projects[key]}
 function tagElements(tags){return tags.map(text=>{const el=document.createElement('span');el.textContent=text;return el})}
 function textAndArrow(text){const label=document.createElement('span');label.className='title-text';label.textContent=text;const arrow=document.createElement('span');arrow.textContent='↗';arrow.setAttribute('aria-hidden','true');return[label,arrow]}
+function resourceElements(resources){return resources.map(r=>{const a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener noreferrer';a.append(...textAndArrow(r[language]));return a})}
 function renderCards(){
  const words=copyText[language];
  for(const card of document.querySelectorAll('.project')){
@@ -1081,6 +1250,10 @@ function renderCards(){
   card.querySelector('.visual-bottom>span:first-child').textContent=p.hint;
   card.querySelector(':scope>p').textContent=p.summary;
   card.querySelector('.tags').replaceChildren(...tagElements(p.cardTags));
+  card.querySelector('.project-outcome strong').textContent=p.outcome;
+  card.querySelector('.project-outcome small').textContent=p.outcomeNote;
+  card.querySelector('.project-resources').replaceChildren(...resourceElements(p.resources.slice(0,1)));
+  card.querySelector('.project-resources').hidden=!p.resources.length;
   const affiliation=card.querySelector('.project-affiliation');
   if(affiliation)affiliation.textContent=words[projects[key].organization];
   const visual=card.querySelector('.project-visual'),more=card.querySelector('.project-more');
@@ -1094,8 +1267,12 @@ function renderDialog(){
  const p=projectInLanguage(activeProject);
  document.querySelector('#dialog-kicker').textContent=p.label;
  document.querySelector('#dialog-title').textContent=p.title;
- for(const key of ['intro','goal','takeaway','status'])document.querySelector('#dialog-'+key).textContent=p[key];
+ for(const key of ['intro','goal','takeaway','contribution','completed','validated','next'])document.querySelector('#dialog-'+key).textContent=p[key];
  document.querySelector('#dialog-tags').replaceChildren(...tagElements(p.tags));
+ document.querySelector('#dialog-outcome').textContent=p.outcome;
+ document.querySelector('#dialog-outcome-note').textContent=p.outcomeNote;
+ document.querySelector('#dialog-resource-links').replaceChildren(...resourceElements(p.resources));
+ document.querySelector('.dialog-resources').hidden=!p.resources.length;
  document.querySelector('#dialog-content').replaceChildren(...p.content.map(text=>{const el=document.createElement('li');el.textContent=text;return el}));
 }
 function setLanguage(next,{save=true,updateURL=true}={}){
@@ -1123,10 +1300,12 @@ document.querySelectorAll('[data-project]').forEach(button=>button.addEventListe
 document.querySelectorAll('.dialog-close,.dialog-done').forEach(button=>button.addEventListener('click',()=>dialog.close()));
 dialog.addEventListener('click',event=>{const r=dialog.getBoundingClientRect();if(event.target===dialog&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))dialog.close()});
 dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');activeProject=null});
-document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
- document.querySelectorAll('[data-filter]').forEach(b=>{const selected=b===button;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected))});
- document.querySelectorAll('.project').forEach(p=>p.hidden=button.dataset.filter!=='all'&&p.dataset.category!==button.dataset.filter);
-}));
+function applyProjectFilter(filter){
+ document.querySelectorAll('[data-filter]').forEach(b=>{const selected=b.dataset.filter===filter;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected))});
+ document.querySelectorAll('.project').forEach(card=>card.hidden=filter==='featured'?card.dataset.featured!=='true':filter!=='all'&&card.dataset.category!==filter);
+}
+document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>applyProjectFilter(button.dataset.filter)));
+window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#project-'))applyProjectFilter('all')});
 document.querySelectorAll('[data-experience-project]').forEach(link=>link.addEventListener('click',()=>document.querySelector('[data-filter="all"]').click()));
 let toastTimeout;
 function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),3200)}
@@ -1140,3 +1319,5 @@ document.querySelector('#share-link').addEventListener('click',async()=>{
 const requestedLanguage=new URLSearchParams(location.search).get('lang');
 let savedLanguage;try{savedLanguage=localStorage.getItem('easonyin-language')}catch{}
 setLanguage(requestedLanguage==='zh'||requestedLanguage==='en'?requestedLanguage:savedLanguage,{save:false,updateURL:false});
+
+applyProjectFilter(location.hash.startsWith('#project-')?'all':'featured');
